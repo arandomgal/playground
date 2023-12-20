@@ -3,6 +3,13 @@ package andrews.ying;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * The heart of the issue is Java Collection traversing
+ *
+ * https://rollbar.com/blog/java-concurrentmodificationexception/#:~:text=The%20ConcurrentModificationException%20generally%20occurs%20when,it%2C%20a%20ConcurrentModificationException%20is%20thrown.
+ */
+
 public class MultiSlidePowerPointTemplate {
     public static void main(String[] args) {
         List<Integer> integers = new ArrayList<>();
