@@ -8,6 +8,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Use CountDownLatch to simulate massive parallel threads.
+ * Sometimes we desire to run thousands of threads in parallel to
+ * test performance of concurrency issues. We desire for these
+ * threads to all start at the exact the same time. We can use
+ * 3 CountDownLatch objects to control (1) the wait for all child
+ * threads to get ready, (2) the release for all the threads to go,
+ * and (3) the wait for all the child threads to finish.
+ */
 public class WaitForAllChildrenToStartThenToFinish {
     public static void main(String[] args) throws InterruptedException {
         List<String> sharedResource = Collections.synchronizedList(new ArrayList<>());
