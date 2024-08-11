@@ -22,6 +22,7 @@ public class NetworkUtils {
         Enumeration<NetworkInterface> interfaceEnumeration = NetworkInterface.getNetworkInterfaces();
         while (interfaceEnumeration.hasMoreElements()) {
             NetworkInterface networkInterface = interfaceEnumeration.nextElement();
+            System.out.println(networkInterface.getInterfaceAddresses() + "=>" + networkInterface.getDisplayName() + "(hardware address=" + networkInterface.getHardwareAddress() + ")");
             if (networkInterface.isLoopback() || !networkInterface.isUp()) {
                 continue;
             }
