@@ -38,12 +38,12 @@ public class Producer {
             producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
-            // Create a messages
-            String text = "MESSAGE " + MESSAGE_ID++;
-            TextMessage message = session.createTextMessage(text);
-
             // Tell the producer to send the message X number of times
             while (true) {
+                // Create a messages
+                String text = "MESSAGE " + MESSAGE_ID++;
+                TextMessage message = session.createTextMessage(text);
+
                 System.out.println("Sent message: " + text);
                 producer.send(message);
                 Thread.sleep(3000); // sleep 3 seconds
