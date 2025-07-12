@@ -1,26 +1,26 @@
-package andrews.ying.amq.ssl.disabled;
+package andrews.ying.amq.insecure;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.Connection;
-import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.MessageProducer;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-public class Producer {
+public class Consumer {
     public static final String BROKER_ENDPOINT_NO_SSL = "tcp://localhost:61616";
     public static final String TOPIC_NAME = "michelle";
-    public static int MESSAGE_ID = 0;
 
     public static void main(String[] args) throws JMSException {
         ActiveMQConnectionFactory connectionFactory = null;
         Connection connection = null;
         Session session = null;
-        MessageProducer producer = null;
+        MessageConsumer consumer = null;
         try {
+
             // Create a ConnectionFactory
             connectionFactory = new ActiveMQConnectionFactory(BROKER_ENDPOINT_NO_SSL);
 
@@ -34,33 +34,35 @@ public class Producer {
             // Create the destination (Topic or Queue)
             Destination destination = session.createTopic(TOPIC_NAME);
 
-            // Create a MessageProducer from the Session to the Topic or Queue
-            producer = session.createProducer(destination);
-            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            // Create a MessageConsumer from the Session to the Topic or Queue
+            consumer = session.createConsumer(destination);
 
-            // Tell the producer to send the message X number of times
             while (true) {
-                // Create a messages
-                String text = "MESSAGE " + MESSAGE_ID++;
-                TextMessage message = session.createTextMessage(text);
+                // Wait for a message
+                Message message = consumer.receive(1000);
 
-                System.out.println("Sent message: " + text);
-                producer.send(message);
-                Thread.sleep(3000); // sleep 3 seconds
+                if (message instanceof TextMessage) {
+                    TextMessage textMessage = (TextMessage) message;
+                    String text = textMessage.getText();
+                    System.out.println("Received: " + text);
+                } else {
+                    System.out.println("Received: " + message);
+                }
+
+                Thread.sleep(3000); //sleep 3 seconds
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Caught: " + e);
             e.printStackTrace();
-        } finally {
+        }  finally {
             // Clean up
-            if (producer != null)
-                producer.close();
+            if (consumer != null)
+                consumer.close();
             if (session != null)
                 session.close();
             if (connection != null)
                 connection.close();
         }
-
     }
+
 }
