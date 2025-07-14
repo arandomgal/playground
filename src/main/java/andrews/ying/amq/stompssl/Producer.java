@@ -12,7 +12,6 @@ import javax.jms.TextMessage;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -22,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
 public class Producer {
-    public static final String BROKER_ENDPOINT_STOMP = "ssl://gxpd527568.devlnk.net:61612";
+    public static final String BROKER_ENDPOINT_STOMP_SSL = "ssl://gxpd527568.devlnk.net:61612";
     public static final String TOPIC_NAME = "michelle";
     public static int MESSAGE_ID = 0;
 
@@ -45,7 +44,7 @@ public class Producer {
         try {
             // Create a ConnectionFactory
             connectionFactory = new StompJmsConnectionFactory();
-            connectionFactory.setBrokerURI(BROKER_ENDPOINT_STOMP);
+            connectionFactory.setBrokerURI(BROKER_ENDPOINT_STOMP_SSL);
             connectionFactory.setSslContext(sslContext);
 
             // Create a Connection

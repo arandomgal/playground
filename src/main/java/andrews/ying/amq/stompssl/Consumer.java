@@ -7,7 +7,6 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.net.ssl.SSLContext;
@@ -22,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
 public class Consumer {
-    public static final String BROKER_ENDPOINT_STOMP = "ssl://gxpd527568.devlnk.net:61612";
+    public static final String BROKER_ENDPOINT_STOMP_SSL = "ssl://gxpd527568.devlnk.net:61612";
     public static final String TOPIC_NAME = "michelle";
 
     public static void main(String[] args) throws JMSException, KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, KeyManagementException {
@@ -45,7 +44,7 @@ public class Consumer {
         try {
             // Create a ConnectionFactory
             connectionFactory = new StompJmsConnectionFactory();
-            connectionFactory.setBrokerURI(BROKER_ENDPOINT_STOMP);
+            connectionFactory.setBrokerURI(BROKER_ENDPOINT_STOMP_SSL);
             connectionFactory.setSslContext(sslContext);
 
             // Create a Connection
