@@ -27,6 +27,12 @@
     </repositories>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.fusesource.stompjms/stompjms-client -->
+        <dependency>
+            <groupId>org.fusesource.stompjms</groupId>
+            <artifactId>stompjms-client</artifactId>
+            <version>1.19</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
