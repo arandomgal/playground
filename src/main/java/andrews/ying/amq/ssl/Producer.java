@@ -11,7 +11,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 public class Producer {
-    public static final String BROKER_ENDPOINT_NO_SSL = "ssl://gxpd527568.devlnk.net:61617";
+    public static final String BROKER_ENDPOINT_SSL = "ssl://gxpd527568.devlnk.net:61617";
     public static final String TOPIC_NAME = "michelle";
     public static int MESSAGE_ID = 0;
 
@@ -22,7 +22,7 @@ public class Producer {
         MessageProducer producer = null;
         try {
             // Create a ConnectionFactory
-            connectionFactory = new ActiveMQSslConnectionFactory(BROKER_ENDPOINT_NO_SSL);
+            connectionFactory = new ActiveMQSslConnectionFactory(BROKER_ENDPOINT_SSL);
 
             // Set the TrustStore details
             connectionFactory.setTrustStore("C:\\TrustedApps\\apache-activemq-5.16.3\\conf\\client.ts");
