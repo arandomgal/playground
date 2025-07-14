@@ -22,7 +22,8 @@
 #### Client changes ####
 - Modify Java client code to set username and password on ActiveMQConnectionFactory object: 
     - example:
-    connectionFactory.setUserName(MICHELLE_USERNAME);
+    
+  connectionFactory.setUserName(MICHELLE_USERNAME);
   connectionFactory.setPassword(MICHELLE_PASSWORD);
 
 ### Reference: https://activemq.apache.org/components/classic/documentation/security###
