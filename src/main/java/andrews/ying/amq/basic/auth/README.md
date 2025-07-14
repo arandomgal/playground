@@ -26,5 +26,5 @@
   connectionFactory.setUserName(MICHELLE_USERNAME);
   connectionFactory.setPassword(MICHELLE_PASSWORD);
 
-### Reference: 
+### Reference: ###
 https://activemq.apache.org/components/classic/documentation/security
