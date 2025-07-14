@@ -1,6 +1,7 @@
 package andrews.ying.amq.stomp;
 
 import org.fusesource.stomp.jms.StompJmsConnectionFactory;
+import org.fusesource.stomp.jms.message.StompJmsMessage;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
@@ -45,11 +46,11 @@ public class Consumer {
                     TextMessage textMessage = (TextMessage) message;
                     String text = textMessage.getText();
                     System.out.println("Received: " + text);
-                } else {
-                    System.out.println("Received: " + message);
+                } else if (message instanceof StompJmsMessage) {
+                    StompJmsMessage stompJmsMessage = (StompJmsMessage) message;
+                    String text = stompJmsMessage.getFrame().contentAsString();
+                    System.out.println("Received: " + text);
                 }
-
-                Thread.sleep(3000); //sleep 3 seconds
             }
         } catch (Exception e) {
             System.out.println("Caught: " + e);

@@ -28,7 +28,6 @@
     connectionFactory = new StompJmsConnectionFactory();
     connectionFactory.setBrokerURI(BROKER_ENDPOINT_STOMP);
     ```
-    You may see error message: java.lang.reflect.InaccessibleObjectException: Unable to make public void sun.security.ssl.SSLSocketImpl.setHost(java.lang.String) accessible: module java.base does not "exports sun.security.ssl" to unnamed module @52aa2946. It's OK. 
 
 ### References ###
 https://activemq.apache.org/components/classic/documentation/stomp
